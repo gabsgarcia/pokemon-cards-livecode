@@ -1,0 +1,176 @@
+/* ===== CORES POR TIPO (passo 2): o JS só coloca data-type="fire" ===== */
+[data-type="normal"]   { --type-color: #a8a77a; }
+[data-type="fire"]     { --type-color: #ee8130; }
+[data-type="water"]    { --type-color: #6390f0; }
+[data-type="electric"] { --type-color: #f7d02c; }
+[data-type="grass"]    { --type-color: #7ac74c; }
+[data-type="ice"]      { --type-color: #96d9d6; }
+[data-type="fighting"] { --type-color: #c22e28; }
+[data-type="poison"]   { --type-color: #a33ea1; }
+[data-type="ground"]   { --type-color: #e2bf65; }
+[data-type="flying"]   { --type-color: #a98ff3; }
+[data-type="psychic"]  { --type-color: #f95587; }
+[data-type="bug"]      { --type-color: #a6b91a; }
+[data-type="rock"]     { --type-color: #b6a136; }
+[data-type="ghost"]    { --type-color: #735797; }
+[data-type="dragon"]   { --type-color: #6f35fc; }
+[data-type="dark"]     { --type-color: #705746; }
+[data-type="steel"]    { --type-color: #b7b7ce; }
+[data-type="fairy"]    { --type-color: #d685ad; }
+
+/* ===== BASE ===== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0 1rem 2rem;
+  font-family: "Nunito", sans-serif;
+  background: #141824;
+  color: #fff;
+}
+
+h1 {
+  font-family: "Press Start 2P", cursive;
+  font-size: clamp(1rem, 4vw, 2rem);
+  text-align: center;
+  margin: 2rem 0;
+  color: #ffcb05;
+  text-shadow: 3px 3px 0 #3d7dca;
+}
+
+.grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Enquanto não há cartas, o texto "Carregando..." ocupa a linha toda */
+.grid:not(:has(.pokemon-card)) {
+  display: block;
+  text-align: center;
+  color: #ffcb05;
+}
+
+/* ===== A CARTA ===== */
+.pokemon-card {
+  aspect-ratio: 63 / 88; /* proporção de uma carta de verdade */
+  perspective: 1000px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-6px);
+}
+
+/* ===== O FLIP (passo 3): girar 180° mostra o verso ===== */
+.card-inner {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.pokemon-card.is-flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem;
+  border: 8px solid #f7d25e;
+  border-radius: 14px;
+  backface-visibility: hidden; /* de costas, some */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+}
+
+.card-front {
+  color: #1d1d1d;
+  background: radial-gradient(circle at 50% 40%, #fff 0%, var(--type-color, #a4c8e2) 75%);
+}
+
+.card-back {
+  transform: rotateY(180deg); /* o verso já nasce de costas */
+  background: #1d1d1d;
+  border-color: var(--type-color, #a4c8e2);
+}
+
+/* ===== FRENTE ===== */
+.card-name {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 900;
+  text-transform: capitalize;
+}
+
+.card-image {
+  width: 90%;
+  flex: 1;
+  min-height: 0;
+  object-fit: contain;
+  image-rendering: pixelated; /* o sprite pequeno do passo 1 não fica borrado */
+  filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.35));
+}
+
+.card-types {
+  margin: 0;
+  padding: 0.2rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+/* ===== VERSO ===== */
+.card-back h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ffcb05;
+}
+
+.card-stats {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8rem;
+}
+
+.card-stats li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  text-transform: capitalize;
+}
+
+.cry-button {
+  width: 100%;
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--type-color, #3d7dca);
+  color: #fff;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+/* ===== O GRITO (passo 4): a carta treme enquanto toca ===== */
+.pokemon-card.is-singing {
+  animation: wiggle 0.25s infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { translate: 0 0; }
+  25% { translate: -4px 0; }
+  75% { translate: 4px 0; }
+}

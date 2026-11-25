@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pokémon Cards</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Gotta Catch 'Em All</h1>
+
+    <!-- Aqui o JS vai inserir as 151 cartas. Começa vazio de propósito. -->
+    <div id="cardsContainer" class="grid"></div>
+
+    <!--
+      A FÔRMA da carta (frente e verso).
+      Tudo que está dentro de <template> NÃO aparece na tela: é só um molde.
+      O JS faz cardTemplate.content.cloneNode(true), preenche e insere no #cardsContainer.
+      As classes (.card-name, .card-image...) são os "ganchos" que o JS usa para achar cada pedaço.
+    -->
+    <template id="cardTemplate">
+      <div class="pokemon-card">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <h2 class="card-name"></h2>
+            <img class="card-image" />
+            <p class="card-types"></p>
+          </div>
+          <div class="card-face card-back">
+            <h3>Base stats</h3>
+            <ul class="card-stats"></ul>
+            <button class="cry-button" type="button">🔊 Cry</button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!--
+      Versão final. Para ver a construção passo a passo, troque por:
+      lib/passos/passo-1.js, passo-2.js, passo-3.js ou passo-4.js
+    -->
+    <script src="lib/pokemon.js" type="module"></script>
+  </body>
+</html>

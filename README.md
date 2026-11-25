@@ -8,6 +8,8 @@ Durante o dia vimos várias linguagens de templating. Neste live code usamos só
 
 ![HTML + CSS + JS](https://img.shields.io/badge/stack-HTML%20%7C%20CSS%20%7C%20Vanilla%20JS-ffcb05)
 
+### 👉 [Veja funcionando aqui](https://gabsgarcia.github.io/pokemon-cards-livecode/)
+
 ## ✨ O que o app faz
 
 - Busca os **151 Pokémon** da primeira geração
@@ -17,6 +19,10 @@ Durante o dia vimos várias linguagens de templating. Neste live code usamos só
 - Aperte **🔊 Cry** para ouvir o grito do Pokémon (a carta treme enquanto toca)
 
 ## 🚀 Como rodar
+
+Para só ver o app, abra a [versão online](https://gabsgarcia.github.io/pokemon-cards-livecode/) (publicada com GitHub Pages).
+
+Para rodar no seu computador:
 
 O `<script>` usa `type="module"`, por isso o navegador não roda o projeto abrindo o `index.html` com dois cliques (`file://`). É preciso um servidor local:
 
